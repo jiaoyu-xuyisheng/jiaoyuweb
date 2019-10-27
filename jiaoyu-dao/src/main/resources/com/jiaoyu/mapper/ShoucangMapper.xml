@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiaoyu.mapper.ShoucangMapper" >
+  <resultMap id="BaseResultMap" type="com.jiaoyu.pojo.Shoucang" >
+    <id column="scid" property="scid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="keid" property="keid" jdbcType="INTEGER" />
+    <result column="keurl" property="keurl" jdbcType="VARCHAR" />
+    <result column="keimgurl" property="keimgurl" jdbcType="VARCHAR" />
+    <result column="keview" property="keview" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    scid, username, keid, keurl, keimgurl, keview
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jiaoyu.pojo.ShoucangExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from shoucang
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shoucang
+    where scid = #{scid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shoucang
+    where scid = #{scid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jiaoyu.pojo.ShoucangExample" >
+    delete from shoucang
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jiaoyu.pojo.Shoucang" >
+    insert into shoucang (scid, username, keid, 
+      keurl, keimgurl, keview
+      )
+    values (#{scid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{keid,jdbcType=INTEGER}, 
+      #{keurl,jdbcType=VARCHAR}, #{keimgurl,jdbcType=VARCHAR}, #{keview,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiaoyu.pojo.Shoucang" >
+    insert into shoucang
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scid != null" >
+        scid,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="keid != null" >
+        keid,
+      </if>
+      <if test="keurl != null" >
+        keurl,
+      </if>
+      <if test="keimgurl != null" >
+        keimgurl,
+      </if>
+      <if test="keview != null" >
+        keview,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scid != null" >
+        #{scid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="keid != null" >
+        #{keid,jdbcType=INTEGER},
+      </if>
+      <if test="keurl != null" >
+        #{keurl,jdbcType=VARCHAR},
+      </if>
+      <if test="keimgurl != null" >
+        #{keimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="keview != null" >
+        #{keview,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jiaoyu.pojo.ShoucangExample" resultType="java.lang.Integer" >
+    select count(*) from shoucang
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update shoucang
+    <set >
+      <if test="record.scid != null" >
+        scid = #{record.scid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keid != null" >
+        keid = #{record.keid,jdbcType=INTEGER},
+      </if>
+      <if test="record.keurl != null" >
+        keurl = #{record.keurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keimgurl != null" >
+        keimgurl = #{record.keimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keview != null" >
+        keview = #{record.keview,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update shoucang
+    set scid = #{record.scid,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      keid = #{record.keid,jdbcType=INTEGER},
+      keurl = #{record.keurl,jdbcType=VARCHAR},
+      keimgurl = #{record.keimgurl,jdbcType=VARCHAR},
+      keview = #{record.keview,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiaoyu.pojo.Shoucang" >
+    update shoucang
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="keid != null" >
+        keid = #{keid,jdbcType=INTEGER},
+      </if>
+      <if test="keurl != null" >
+        keurl = #{keurl,jdbcType=VARCHAR},
+      </if>
+      <if test="keimgurl != null" >
+        keimgurl = #{keimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="keview != null" >
+        keview = #{keview,jdbcType=INTEGER},
+      </if>
+    </set>
+    where scid = #{scid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jiaoyu.pojo.Shoucang" >
+    update shoucang
+    set username = #{username,jdbcType=VARCHAR},
+      keid = #{keid,jdbcType=INTEGER},
+      keurl = #{keurl,jdbcType=VARCHAR},
+      keimgurl = #{keimgurl,jdbcType=VARCHAR},
+      keview = #{keview,jdbcType=INTEGER}
+    where scid = #{scid,jdbcType=INTEGER}
+  </update>
+</mapper>

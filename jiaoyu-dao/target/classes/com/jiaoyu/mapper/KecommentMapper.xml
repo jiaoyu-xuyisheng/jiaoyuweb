@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiaoyu.mapper.KecommentMapper" >
+  <resultMap id="BaseResultMap" type="com.jiaoyu.pojo.Kecomment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="keid" property="keid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="commentDate" property="commentdate" jdbcType="TIMESTAMP" />
+    <result column="start" property="start" jdbcType="VARCHAR" />
+    <result column="userimgurl" property="userimgurl" jdbcType="VARCHAR" />
+    <result column="comcontent" property="comcontent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, keid, username, commentDate, start, userimgurl, comcontent
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jiaoyu.pojo.KecommentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from kecomment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from kecomment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from kecomment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jiaoyu.pojo.KecommentExample" >
+    delete from kecomment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jiaoyu.pojo.Kecomment" >
+    insert into kecomment (id, keid, username, 
+      commentDate, start, userimgurl, 
+      comcontent)
+    values (#{id,jdbcType=INTEGER}, #{keid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{commentdate,jdbcType=TIMESTAMP}, #{start,jdbcType=VARCHAR}, #{userimgurl,jdbcType=VARCHAR}, 
+      #{comcontent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiaoyu.pojo.Kecomment" >
+    insert into kecomment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="keid != null" >
+        keid,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="commentdate != null" >
+        commentDate,
+      </if>
+      <if test="start != null" >
+        start,
+      </if>
+      <if test="userimgurl != null" >
+        userimgurl,
+      </if>
+      <if test="comcontent != null" >
+        comcontent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="keid != null" >
+        #{keid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="commentdate != null" >
+        #{commentdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="start != null" >
+        #{start,jdbcType=VARCHAR},
+      </if>
+      <if test="userimgurl != null" >
+        #{userimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="comcontent != null" >
+        #{comcontent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jiaoyu.pojo.KecommentExample" resultType="java.lang.Integer" >
+    select count(*) from kecomment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update kecomment
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.keid != null" >
+        keid = #{record.keid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentdate != null" >
+        commentDate = #{record.commentdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.start != null" >
+        start = #{record.start,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userimgurl != null" >
+        userimgurl = #{record.userimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comcontent != null" >
+        comcontent = #{record.comcontent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update kecomment
+    set id = #{record.id,jdbcType=INTEGER},
+      keid = #{record.keid,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      commentDate = #{record.commentdate,jdbcType=TIMESTAMP},
+      start = #{record.start,jdbcType=VARCHAR},
+      userimgurl = #{record.userimgurl,jdbcType=VARCHAR},
+      comcontent = #{record.comcontent,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiaoyu.pojo.Kecomment" >
+    update kecomment
+    <set >
+      <if test="keid != null" >
+        keid = #{keid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="commentdate != null" >
+        commentDate = #{commentdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="start != null" >
+        start = #{start,jdbcType=VARCHAR},
+      </if>
+      <if test="userimgurl != null" >
+        userimgurl = #{userimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="comcontent != null" >
+        comcontent = #{comcontent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jiaoyu.pojo.Kecomment" >
+    update kecomment
+    set keid = #{keid,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      commentDate = #{commentdate,jdbcType=TIMESTAMP},
+      start = #{start,jdbcType=VARCHAR},
+      userimgurl = #{userimgurl,jdbcType=VARCHAR},
+      comcontent = #{comcontent,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

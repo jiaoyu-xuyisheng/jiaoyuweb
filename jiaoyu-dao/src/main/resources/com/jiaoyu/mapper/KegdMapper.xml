@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiaoyu.mapper.KegdMapper" >
+  <resultMap id="BaseResultMap" type="com.jiaoyu.pojo.Kegd" >
+    <id column="gdid" property="gdid" jdbcType="INTEGER" />
+    <result column="gdimg" property="gdimg" jdbcType="VARCHAR" />
+    <result column="gdbackground" property="gdbackground" jdbcType="VARCHAR" />
+    <result column="gdurl" property="gdurl" jdbcType="VARCHAR" />
+    <result column="gdcreatetime" property="gdcreatetime" jdbcType="TIMESTAMP" />
+    <result column="gdendtime" property="gdendtime" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+    <result column="gduserid" property="gduserid" jdbcType="INTEGER" />
+    <result column="gdusername" property="gdusername" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    gdid, gdimg, gdbackground, gdurl, gdcreatetime, gdendtime, isdelete, gduserid, gdusername
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jiaoyu.pojo.KegdExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from kegd
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from kegd
+    where gdid = #{gdid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from kegd
+    where gdid = #{gdid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jiaoyu.pojo.KegdExample" >
+    delete from kegd
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jiaoyu.pojo.Kegd" >
+    insert into kegd (gdid, gdimg, gdbackground, 
+      gdurl, gdcreatetime, gdendtime, 
+      isdelete, gduserid, gdusername
+      )
+    values (#{gdid,jdbcType=INTEGER}, #{gdimg,jdbcType=VARCHAR}, #{gdbackground,jdbcType=VARCHAR}, 
+      #{gdurl,jdbcType=VARCHAR}, #{gdcreatetime,jdbcType=TIMESTAMP}, #{gdendtime,jdbcType=TIMESTAMP}, 
+      #{isdelete,jdbcType=INTEGER}, #{gduserid,jdbcType=INTEGER}, #{gdusername,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiaoyu.pojo.Kegd" >
+    insert into kegd
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gdid != null" >
+        gdid,
+      </if>
+      <if test="gdimg != null" >
+        gdimg,
+      </if>
+      <if test="gdbackground != null" >
+        gdbackground,
+      </if>
+      <if test="gdurl != null" >
+        gdurl,
+      </if>
+      <if test="gdcreatetime != null" >
+        gdcreatetime,
+      </if>
+      <if test="gdendtime != null" >
+        gdendtime,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+      <if test="gduserid != null" >
+        gduserid,
+      </if>
+      <if test="gdusername != null" >
+        gdusername,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gdid != null" >
+        #{gdid,jdbcType=INTEGER},
+      </if>
+      <if test="gdimg != null" >
+        #{gdimg,jdbcType=VARCHAR},
+      </if>
+      <if test="gdbackground != null" >
+        #{gdbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="gdurl != null" >
+        #{gdurl,jdbcType=VARCHAR},
+      </if>
+      <if test="gdcreatetime != null" >
+        #{gdcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gdendtime != null" >
+        #{gdendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="gduserid != null" >
+        #{gduserid,jdbcType=INTEGER},
+      </if>
+      <if test="gdusername != null" >
+        #{gdusername,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jiaoyu.pojo.KegdExample" resultType="java.lang.Integer" >
+    select count(*) from kegd
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update kegd
+    <set >
+      <if test="record.gdid != null" >
+        gdid = #{record.gdid,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdimg != null" >
+        gdimg = #{record.gdimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdbackground != null" >
+        gdbackground = #{record.gdbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdurl != null" >
+        gdurl = #{record.gdurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdcreatetime != null" >
+        gdcreatetime = #{record.gdcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gdendtime != null" >
+        gdendtime = #{record.gdendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isdelete != null" >
+        isdelete = #{record.isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.gduserid != null" >
+        gduserid = #{record.gduserid,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdusername != null" >
+        gdusername = #{record.gdusername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update kegd
+    set gdid = #{record.gdid,jdbcType=INTEGER},
+      gdimg = #{record.gdimg,jdbcType=VARCHAR},
+      gdbackground = #{record.gdbackground,jdbcType=VARCHAR},
+      gdurl = #{record.gdurl,jdbcType=VARCHAR},
+      gdcreatetime = #{record.gdcreatetime,jdbcType=TIMESTAMP},
+      gdendtime = #{record.gdendtime,jdbcType=TIMESTAMP},
+      isdelete = #{record.isdelete,jdbcType=INTEGER},
+      gduserid = #{record.gduserid,jdbcType=INTEGER},
+      gdusername = #{record.gdusername,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiaoyu.pojo.Kegd" >
+    update kegd
+    <set >
+      <if test="gdimg != null" >
+        gdimg = #{gdimg,jdbcType=VARCHAR},
+      </if>
+      <if test="gdbackground != null" >
+        gdbackground = #{gdbackground,jdbcType=VARCHAR},
+      </if>
+      <if test="gdurl != null" >
+        gdurl = #{gdurl,jdbcType=VARCHAR},
+      </if>
+      <if test="gdcreatetime != null" >
+        gdcreatetime = #{gdcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gdendtime != null" >
+        gdendtime = #{gdendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="gduserid != null" >
+        gduserid = #{gduserid,jdbcType=INTEGER},
+      </if>
+      <if test="gdusername != null" >
+        gdusername = #{gdusername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gdid = #{gdid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jiaoyu.pojo.Kegd" >
+    update kegd
+    set gdimg = #{gdimg,jdbcType=VARCHAR},
+      gdbackground = #{gdbackground,jdbcType=VARCHAR},
+      gdurl = #{gdurl,jdbcType=VARCHAR},
+      gdcreatetime = #{gdcreatetime,jdbcType=TIMESTAMP},
+      gdendtime = #{gdendtime,jdbcType=TIMESTAMP},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      gduserid = #{gduserid,jdbcType=INTEGER},
+      gdusername = #{gdusername,jdbcType=VARCHAR}
+    where gdid = #{gdid,jdbcType=INTEGER}
+  </update>
+</mapper>

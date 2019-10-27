@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jiaoyu.mapper.LowstartMapper" >
+  <resultMap id="BaseResultMap" type="com.jiaoyu.pojo.Lowstart" >
+    <id column="lowid" property="lowid" jdbcType="INTEGER" />
+    <result column="lowusername" property="lowusername" jdbcType="VARCHAR" />
+    <result column="answerid" property="answerid" jdbcType="INTEGER" />
+    <result column="anusername" property="anusername" jdbcType="VARCHAR" />
+    <result column="lowcreatedate" property="lowcreatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    lowid, lowusername, answerid, anusername, lowcreatedate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jiaoyu.pojo.LowstartExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lowstart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from lowstart
+    where lowid = #{lowid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lowstart
+    where lowid = #{lowid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jiaoyu.pojo.LowstartExample" >
+    delete from lowstart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jiaoyu.pojo.Lowstart" >
+    insert into lowstart (lowid, lowusername, answerid, 
+      anusername, lowcreatedate)
+    values (#{lowid,jdbcType=INTEGER}, #{lowusername,jdbcType=VARCHAR}, #{answerid,jdbcType=INTEGER}, 
+      #{anusername,jdbcType=VARCHAR}, #{lowcreatedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiaoyu.pojo.Lowstart" >
+    insert into lowstart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lowid != null" >
+        lowid,
+      </if>
+      <if test="lowusername != null" >
+        lowusername,
+      </if>
+      <if test="answerid != null" >
+        answerid,
+      </if>
+      <if test="anusername != null" >
+        anusername,
+      </if>
+      <if test="lowcreatedate != null" >
+        lowcreatedate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lowid != null" >
+        #{lowid,jdbcType=INTEGER},
+      </if>
+      <if test="lowusername != null" >
+        #{lowusername,jdbcType=VARCHAR},
+      </if>
+      <if test="answerid != null" >
+        #{answerid,jdbcType=INTEGER},
+      </if>
+      <if test="anusername != null" >
+        #{anusername,jdbcType=VARCHAR},
+      </if>
+      <if test="lowcreatedate != null" >
+        #{lowcreatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jiaoyu.pojo.LowstartExample" resultType="java.lang.Integer" >
+    select count(*) from lowstart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lowstart
+    <set >
+      <if test="record.lowid != null" >
+        lowid = #{record.lowid,jdbcType=INTEGER},
+      </if>
+      <if test="record.lowusername != null" >
+        lowusername = #{record.lowusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answerid != null" >
+        answerid = #{record.answerid,jdbcType=INTEGER},
+      </if>
+      <if test="record.anusername != null" >
+        anusername = #{record.anusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lowcreatedate != null" >
+        lowcreatedate = #{record.lowcreatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lowstart
+    set lowid = #{record.lowid,jdbcType=INTEGER},
+      lowusername = #{record.lowusername,jdbcType=VARCHAR},
+      answerid = #{record.answerid,jdbcType=INTEGER},
+      anusername = #{record.anusername,jdbcType=VARCHAR},
+      lowcreatedate = #{record.lowcreatedate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiaoyu.pojo.Lowstart" >
+    update lowstart
+    <set >
+      <if test="lowusername != null" >
+        lowusername = #{lowusername,jdbcType=VARCHAR},
+      </if>
+      <if test="answerid != null" >
+        answerid = #{answerid,jdbcType=INTEGER},
+      </if>
+      <if test="anusername != null" >
+        anusername = #{anusername,jdbcType=VARCHAR},
+      </if>
+      <if test="lowcreatedate != null" >
+        lowcreatedate = #{lowcreatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where lowid = #{lowid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jiaoyu.pojo.Lowstart" >
+    update lowstart
+    set lowusername = #{lowusername,jdbcType=VARCHAR},
+      answerid = #{answerid,jdbcType=INTEGER},
+      anusername = #{anusername,jdbcType=VARCHAR},
+      lowcreatedate = #{lowcreatedate,jdbcType=TIMESTAMP}
+    where lowid = #{lowid,jdbcType=INTEGER}
+  </update>
+</mapper>
