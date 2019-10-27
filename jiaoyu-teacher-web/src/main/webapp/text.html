@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>upload模块快速使用</title>
+ <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+ <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="layui/layui.all.js"></script>
+</head>
+<body>
+ 
+<form class="layui-form" action="http://www.baidu.com"  method="post" id="myForm" enctype="multipart/form-data">
+    <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input"> 
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">内容</label>
+        <div class="layui-input-block">
+            <textarea class="layui-textarea layui-hide" name="content" lay-verify="article_desc" id="content">
+            cccccccccccc
+            
+            </textarea>
+        </div>
+    </div>
+     <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+
+ 
+
+<script>
+            layui.use(['form', 'layedit', 'laydate'], function() {
+             var form = layui.form
+               , layer = layui.layer
+               , layedit = layui.layedit
+               , laydate = layui.laydate;
+           //上传图片,必须放在 创建一个编辑器前面
+           layedit.set({
+               uploadImage: {
+                    url: 'http://localhost:8092/up/upload.do' //接口url
+                   ,type: 'post' //默认post
+               }
+           });
+           //创建一个编辑器
+           var editIndex = layedit.build('content',{
+                   height:200
+               }
+           );
+      });
+</script>
+
+<script>
+//Demo
+layui.use('form', function(){
+  var form = layui.form;
+  
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    layer.msg(JSON.stringify(data.field));
+    return false;
+  });
+  
+  
+
+  form.verify({
+     article_desc: function(value){
+          layedit.sync(index);
+      }
+  });
+ 
+});
+</script>
+</body>
+</html>

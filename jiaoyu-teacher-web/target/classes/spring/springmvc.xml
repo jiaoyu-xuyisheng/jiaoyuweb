@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	 xmlns:mvc="http://www.springframework.org/schema/mvc"
+	 xmlns:solr="http://www.springframework.org/schema/data/solr"
+	xsi:schemaLocation="http://www.springframework.org/schema/data/solr 
+  		http://www.springframework.org/schema/data/solr/spring-solr-1.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+  
+  
+   <context:property-placeholder location="classpath:config/application.properties" />
+		
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<property name="maxUploadSize" value="10242880000"></property>
+	</bean>
+	
+	<mvc:annotation-driven>
+	  <mvc:message-converters register-defaults="true">
+	    <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">  
+	      <property name="supportedMediaTypes" value="application/json"/>
+	      <property name="features">
+	        <array>
+	          <value>WriteMapNullValue</value>
+	          <value>WriteDateUseDateFormat</value>
+	        </array>
+	      </property>
+	    </bean>
+	  </mvc:message-converters>  
+	</mvc:annotation-driven>
+	
+	
+  
+   <!-- redis 相关配置 --> 
+   <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">  
+     <property name="maxIdle" value="300" />   
+     <property name="maxWaitMillis" value="3000" />  
+     <property name="testOnBorrow" value="true" />  
+   </bean>  
+  
+   <bean id="JedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" 
+       p:host-name="192.168.25.166" p:port="6379" p:password="" p:pool-config-ref="poolConfig"/>  
+   
+   <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">  
+    	<property name="connectionFactory" ref="JedisConnectionFactory" />  
+   </bean>  
+      
+   	<!-- solr服务器地址 -->
+	<solr:solr-server id="solrServer" url="http://192.168.25.166:8080/solr" />
+	<!-- solr模板，使用solr模板可对索引库进行CRUD的操作 -->
+	<bean id="solrTemplate" class="org.springframework.data.solr.core.SolrTemplate">
+		<constructor-arg ref="solrServer" />
+	</bean>
+
+	<!-- 引用dubbo 服务 -->
+	<dubbo:application name="jiaoyu-teacher-web" />
+	<dubbo:registry address="zookeeper://192.168.25.166:2181"/>
+	<dubbo:annotation package="com.jiaoyu" />  	
+
+</beans>

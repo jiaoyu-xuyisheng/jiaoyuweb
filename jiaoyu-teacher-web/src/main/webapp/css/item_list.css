@@ -1,0 +1,22 @@
+.video_list_box{float:left;height:140px;margin:10px;background:#8D8D8D;width:22%;text-align: center}
+
+.video_list_box>a>p{font-size:18px;font-weight:bolder;margin-top:40px;color:darkgoldenrod;text-shadow:2px 2px 2px #ffff;}
+
+.tab_title_video{background:#2E2D3C;color:darkgoldenrod;width:30%;}
+.layui-tab-title{background:#2E2D3C;}
+.ask_small_box {width:12%;height:60px;background:dodgerblue;text-align:center;color:#ffff;float:left;}
+.answer_count{padding-top:10px;padding-bottom:5px;}
+.view_count_box{width:8%;height:60px;padding-left:30px;text-align:center;color:#c9c9c9;float:left;}
+.view_count{padding-top:10px;padding-bottom:5px;}
+.ask_contant_box{width:65%;padding-left:45px;text-align:center;color:#c9c9c9;float:left;}
+.ask_contant_line1{padding-top:10px;padding-bottom:5px;color:#3F3F3F;}
+.ask_contant_line2>span{padding-left:15px;}
+.evaluate_small_box_left{float:left;width:10%;height:80px;text-align:center;}
+.evaluate_small_box_left>img{padding-top:5px;padding-bottom:5px;}
+.evaluate_small_box_right{float:left;width:80%;height:80px;margin-left:30px;text-align:center;}
+.evaluate_small_box_right>p{padding:5px;}
+
+
+
+
+

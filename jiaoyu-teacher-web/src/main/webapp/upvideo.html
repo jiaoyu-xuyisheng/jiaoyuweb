@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="521教育,远程教育,公开课,网络公开课,在线学习,在线教育,在线培训,在线课堂,名师讲堂,视频课程">
+    <meta name="description" itemprop="description" content="521教育推出的专业在线教育平台，聚合大量优质教育机构和名师，打造老师在线上课教学、学生及时互动学习的课堂。521教育，学习成就梦想！">
+    <title>521教育网</title>
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="layui/layui.all.js"></script>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body >
+<!--头部-->
+<div  style="padding:0px;magin:0px;width:100%">
+    <div class="layui-row" style="height:80px;">
+        <a class="layui-col-xs3 layui-col-xs-offset1" style="background-image: url(img/953.png);background-position-x:10px;
+        background-position-y:10px;display:block;cursor:pointer;
+        height:100%;" href="index.html">
+        </a>
+        <div class="layui-col-xs5" style="height:100%;position:relative">
+            <div style="position:absolute;height:40px;width:80%;top:20px;left:12%">
+
+                <input type="text" placeholder="请输入你要找的课程！"  class="layui-input" style="float:left;width:80%">
+                <button class="layui-btn" style="float:left">
+                    <i class="layui-icon">&#xe615;</i>
+                </button>
+            </div>
+        </div>
+        <div class="layui-col-xs3" style="height:100%;">
+            <ul class="login_tab">
+                <li>
+                    <a>
+                        开课
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        登录</a>
+                </li>
+                <li>
+                    <a href="regiest.html">注册</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="layui-row"  style="border:5px solid #01AAED;min-height:700px;">
+
+	<div>
+	<video src="http://192.168.25.166:8888/group1/M00/00/00/wKgZpl0G0XyAZL4WCymkHNcHflk992.mp4" controls="controls">
+    </video>
+	</div>
+    <div class="layui-upload" style="padding:30px;">
+        <button type="button" class="layui-btn layui-btn-normal" id="testList">视频列表上传</button>
+        <div class="layui-upload-list">
+            <table class="layui-table">
+                <thead>
+                <tr><th>文件名</th>
+                    <th>大小</th>
+                    <th>状态</th>
+                    <th>标题</th>
+                    <th>操作</th>
+                </tr></thead>
+                <tbody id="demoList"></tbody>
+            </table>
+        </div>
+        <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+    </div>
+
+
+    <div class="layui-upload" style="padding:30px;">
+        <button type="button" class="layui-btn" id="test1">上传视频封面图片</button>
+        <div class="layui-upload-list">
+            <img class="layui-upload-img" id="demo1" style="border:1px solid deeppink;width:300px;height:150px;">
+            <p id="demoText"></p>
+        </div>
+    </div>
+
+    <form class="layui-form layui-form-pane" action="" style="padding:10%;">
+        <div class="layui-form-item">
+            <label class="layui-form-label">课程标题</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司名字</label>
+            <div class="layui-input-block">
+                <input type="text" name="company"  autocomplete="off" placeholder="公司名字" class="layui-input">
+            </div>
+        </div>
+
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">选择主分类</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="aihao">
+                    <option value=""></option>
+                    <option value="0">写作</option>
+                    <option value="1" selected="">阅读</option>
+                    <option value="2">游戏</option>
+                    <option value="3">音乐</option>
+                    <option value="4">旅行</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">适合人群</label>
+            <div class="layui-input-block">
+                <select name="intended" lay-filter="aihao">
+                    <option value=""></option>
+                    <option value="0">0-3年工作经验</option>
+                    <option value="1" selected="">3-5年工作经验</option>
+                    <option value="2">5-7年工作经验</option>
+                    <option value="3">7-9年工作经验</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">适合人群</label>
+            <div class="layui-input-block">
+                <select name="intended" lay-filter="aihao">
+                    <option value=""></option>
+                    <option value="0">0-3年工作经验</option>
+                    <option value="1" selected="">3-5年工作经验</option>
+                    <option value="2">5-7年工作经验</option>
+                    <option value="3">7-9年工作经验</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">选择知识点</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="write" title="写作">
+                <input type="checkbox" name="reader" title="阅读" checked="">
+                <input type="checkbox" name="game" title="游戏">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">就业方向</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="write" title="写作">
+                <input type="checkbox" name="reader" title="阅读" checked="">
+                <input type="checkbox" name="game" title="游戏">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">编辑器</label>
+            <div class="layui-input-block">
+                <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+
+
+
+</div>
+
+
+
+</div>
+<script>
+
+    layui.use(['layer', 'form', 'element','layedit','laydate','upload'], function(){
+        var layer = layui.layer
+            ,form = layui.form
+            ,element = layui.element
+            ,layedit=layui.layedit,
+            laydate=layui.laydate
+            ,upload = layui.upload;
+        var $ = layui.jquery;
+        form.render();
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor',{
+            height:100
+        });
+
+
+
+        form.verify({
+            title:function(value){
+                if(value.length<5){
+                    return '标题至少得5个字符啊';
+                }
+            },pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        })
+
+        form.on('switch(switchTest)', function(data){
+            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            })
+            return false;
+        });
+
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: 'http://localhost:8092/up/upload.do'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+
+
+
+        //多图片上传
+        var demoListView = $('#demoList')
+            ,uploadListIns = upload.render({
+            elem: '#testList'
+            ,url: 'http://localhost:8092/up/upload2.do'
+            ,accept: 'file'
+            ,multiple: true
+            ,auto: false
+            ,bindAction: '#testListAction'
+            ,choose: function(obj){
+                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function(index, file, result){
+                    var tr = $(['<tr id="upload-'+ index +'">'
+                        ,'<td>'+ file.name +'</td>'
+                        ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
+                        ,'<td>等待上传</td>'
+                        ,'<td><input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input"></td>'
+                        ,'<td>'
+                        ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                        ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        ,'</td>'
+                        ,'</tr>'].join(''));
+
+                    //单个重传
+                    tr.find('.demo-reload').on('click', function(){
+                        obj.upload(index, file);
+                    });
+
+                    //删除
+                    tr.find('.demo-delete').on('click', function(){
+                        delete files[index]; //删除对应的文件
+                        tr.remove();
+                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                    });
+
+                    demoListView.append(tr);
+                });
+            }
+            ,done: function(res, index, upload){
+                if(res.code == 0){ //上传成功
+                    var tr = demoListView.find('tr#upload-'+ index)
+                        ,tds = tr.children();
+                    tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+                    tds.eq(3).html(''); //清空操作
+                    return delete this.files[index]; //删除文件队列已经上传成功的文件
+                }
+                this.error(index, upload);
+            }
+            ,error: function(index, upload){
+                var tr = demoListView.find('tr#upload-'+ index)
+                    ,tds = tr.children();
+                tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+            }
+        });
+
+    });
+</script>
+</body>
+</html>
